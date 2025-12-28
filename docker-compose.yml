@@ -29,8 +29,6 @@ services:
     shm_size: "2GB"
     volumes:
       - pgdata:/var/lib/postgresql/data
-    expose:
-      - "5432"
 
   musicbrainz:
     build:
@@ -93,8 +91,6 @@ services:
       - SOLR_HEAP=2g
       - LOG4J_FORMAT_MSG_NO_LOOKUPS=true
     mem_swappiness: 1
-    expose:
-      - "8983"
     volumes:
       - dbdump:/media/dbdump:ro
       - solrdata:/var/solr
@@ -113,9 +109,6 @@ services:
       nofile: 65536
     volumes:
       - mqdata:/var/lib/rabbitmq
-    expose:
-      - "5672"
-
   redis:
     image: redis:3-alpine
     logging:
@@ -124,5 +117,3 @@ services:
         max-size: "10m"
         max-file: "10"
     restart: unless-stopped
-    expose:
-      - "6379"
